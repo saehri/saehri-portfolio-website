@@ -4,6 +4,7 @@ import './globals.css';
 
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import CustomCursor from '@/components/custom-cursor';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -30,6 +31,7 @@ export default function RootLayout({
 				{children}
 
 				<Footer />
+				<CustomCursor />
 			</body>
 		</html>
 	);

@@ -52,23 +52,23 @@ function NavLink(props: NavLinkProps) {
 					backgroundColor: isActive ? 'rgb(34,197,94)' : 'rgb(226,232,240)',
 				}}
 				transition={{ ease: animationEasing }}
-				className="p-1 px-2 flex items-center gap-2 rounded-full"
+				className="link p-1 px-2 flex items-center gap-2 rounded-full"
 			>
-				<div className="tracking-tight text-xl">{props.children}</div>
+				<div className="link tracking-tight text-xl">{props.children}</div>
 
-				<motion.div className="w-6 h-6 rounded-full relative border border-slate-950">
+				<motion.div className="link w-6 h-6 rounded-full relative border border-slate-950">
 					<motion.span
 						initial={{ x: '-50%', y: '-50%' }}
 						animate={{ rotate: isActive ? 180 : 0, x: '-50%', y: '-50%' }}
 						transition={{ ease: animationEasing }}
-						className="w-4 h-[1px] bg-slate-950 absolute top-1/2 left-1/2"
+						className="link w-4 h-[1px] bg-slate-950 absolute top-1/2 left-1/2"
 					></motion.span>
 
 					<motion.span
 						initial={{ x: '-50%', y: '-50%' }}
 						animate={{ rotate: isActive ? 270 : 0, y: '-50%', x: '-50%' }}
 						transition={{ ease: animationEasing }}
-						className="w-[1px] h-4 bg-slate-950 absolute top-1/2 left-1/2"
+						className="link w-[1px] h-4 bg-slate-950 absolute top-1/2 left-1/2"
 					></motion.span>
 				</motion.div>
 			</motion.div>

@@ -1,18 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Header() {
 	const pathname = usePathname();
 
 	return (
-		<header className="sticky mt-4 top-4 mx-auto flex flex-row justify-between w-max sm:w-full max-w-screen-sm py-2 px-[10px] rounded-full bg-white">
+		<header className="sticky mt-2 top-2 mx-auto flex flex-row justify-between w-max sm:w-full max-w-screen-sm p-1 rounded-full bg-white">
 			<span></span>
 
 			<nav>
-				<ul className="flex flex-row items-center gap-2">
+				<ul className="flex flex-row items-center gap-1">
 					<li>
 						<NavLink href="/" currentPathname={pathname}>
 							Home
@@ -49,7 +49,7 @@ function NavLink(props: NavLinkProps) {
 			<motion.div
 				initial={false}
 				animate={{
-					backgroundColor: isActive ? 'rgb(34,197,94)' : 'rgb(226,232,240)',
+					backgroundColor: isActive ? 'rgb(234, 179, 8)' : 'rgb(226,232,240)',
 				}}
 				transition={{ ease: animationEasing }}
 				className="link p-1 px-2 flex items-center gap-2 rounded-full"

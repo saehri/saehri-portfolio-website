@@ -11,18 +11,12 @@ export default function CustomCursor() {
 	const translateX = useMotionValue(0);
 	const translateY = useMotionValue(0);
 
-	const pointerScale = {
-		link: 0,
-		media: 4,
-		modal: 4,
-	};
-
 	useEffect(() => {
 		function handleMouseMove(ev: MouseEvent) {
-			// 8 is not magic number, its the width of the pointer / 2 -
-			// we use this number to position the pointer to the center of the mouse.
-			translateX.set(ev.clientX - 8);
-			translateY.set(ev.clientY - 8);
+			const cursorOffset = pointerTarget ? 16 : 8;
+
+			translateX.set(ev.clientX - cursorOffset);
+			translateY.set(ev.clientY - cursorOffset);
 
 			// Make sure we read the target as HTML Element
 			const target = ev.target as HTMLElement | null;
@@ -53,17 +47,28 @@ export default function CustomCursor() {
 
 	return (
 		<motion.div
+			aria-hidden="true"
 			style={{
 				x: useSpring(translateX, { stiffness: 80, damping: 15, mass: 0.1 }),
 				y: useSpring(translateY, { stiffness: 80, damping: 15, mass: 0.1 }),
 			}}
 			animate={{
-				scale: pointerTarget !== undefined ? pointerScale[pointerTarget] : 1,
+				width: pointerTarget !== undefined ? 32 : 16,
+				height: pointerTarget !== undefined ? 32 : 16,
 				transition: { damping: 15, stiffness: 80 },
 			}}
-			className="mix-blend-difference hidden lg:block fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none bg-white"
+			className="hidden lg:grid fixed top-0 left-0 rounded-full pointer-events-none bg-yellow-500 border-[.5px] border-slate-950 place-items-center"
 		>
-			<div></div>
+			<motion.img
+				animate={{
+					opacity: pointerTarget ? 1 : 0,
+					scale: pointerTarget ? 1 : 0,
+					rotate: pointerTarget ? 0 : 45,
+				}}
+				src="/arrow_north_east.svg"
+				alt=""
+				className="w-5 h-5 object-contain object-center"
+			/>
 		</motion.div>
 	);
 }
